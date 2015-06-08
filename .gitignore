@@ -1,0 +1,13 @@
+!.gitkeep
+.idea/
+src/node_modules/
+src/bower_components/
+node_modules/
+server.log
+src/locales/
+src/*.js
+src/*.map
+*.dll
+*.exe
+*.pak
+*.dat

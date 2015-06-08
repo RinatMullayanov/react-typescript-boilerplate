@@ -1,0 +1,24 @@
+{
+  "name": "react-typescript-boilerplate",
+  "version": "0.0.1",
+  "authors": [
+    "Rinat Mullayanov <nutsgamedev@gmail.com>"
+  ],
+  "description": "React Typescript boilerplate",
+  "keywords": [
+    "react",
+    "typescript",
+    "boilerplate"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "src/bower_components"
+  ],
+  "homepage": "https://github.com/RinatMullayanov/react-typescript-boilerplate.git",
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "dragula.js": "~1.5.0"
+  }
+}

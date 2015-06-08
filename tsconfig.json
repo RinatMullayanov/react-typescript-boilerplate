@@ -10,6 +10,8 @@
         "noLib": false
     },
     "files": [
-          "./src/app.ts"
+          "./src/app.ts",          
+          "./src/components/input/input.ts",
+          "./src/components/hello/hello.ts"
       ]
 }

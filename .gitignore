@@ -5,8 +5,8 @@ src/bower_components/
 node_modules/
 server.log
 src/locales/
-src/*.js
-src/*.map
+src/**/*.js
+src/**/*.map
 *.dll
 *.exe
 *.pak

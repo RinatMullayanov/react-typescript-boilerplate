@@ -1,25 +1,30 @@
 /// <reference path="../typings/react/react.d.ts" />
 /// <reference path="../node_modules/typed-react/typed-react.d.ts" />
 
-import React = require("react");
-import TypedReact = require("typed-react");
+import React = require('react');
+import TypedReact = require('typed-react');
 
-export interface HelloWorldProps {
-    name: string;
-}
+import HelloWorldComponent = require('../src/components/hello/hello');
+import InputComponent = require('../src/components/input/input');
 
-interface HelloWorldState {
-}
-
-class HelloWorld extends TypedReact.Component<HelloWorldProps, HelloWorldState> {
+// combine several components
+class App extends TypedReact.Component<any, any> {
     render() {
-        return React.createElement("div", null, "Hello ", this.props.name);
+      var hello = TypedReact.createClass(HelloWorldComponent);
+      var customComponent = TypedReact.createClass(InputComponent);
+      
+    return (
+        React.createElement('div', null, 
+          React.createElement(hello, {name: 'World!!!'}), 
+          React.createElement(customComponent, null)
+        )
+      )
     }
 }
 
-var hello = TypedReact.createClass(HelloWorld);
+var app = TypedReact.createClass(App);
 
 React.render(
-    React.createElement(hello, {name: "World!!!"}),
+    React.createElement(app, null),
     document.getElementById('react-container')
 );

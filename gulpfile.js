@@ -46,7 +46,7 @@ gulp.task('js-dev', function () {
   //gulp.src('collapseCheckbox.js')
   //  .pipe(gulp.dest('test/js/'));
   var tsProject = ts.createProject('tsconfig.json');
-  var tsResult = tsProject.src() // instead of gulp.src(...) 
+  return tsProject.src() // instead of gulp.src(...) 
     .pipe(sourcemaps.init())    
     .pipe(ts(tsProject))
     .js
@@ -54,14 +54,15 @@ gulp.task('js-dev', function () {
     .pipe(gulp.dest(function(file) {
       return file.base;
   })); 
-  
+});
+
+gulp.task('browserify', ['js-dev'], function() {  
   return browserify('./src/app.js')
   .bundle()
   .pipe(source(config.siteDir + '/bundle.js'))
   .pipe(gulp.dest(function(file) {
     return file.base;
   })); 
-
 });
 
 gulp.task('css-dev', function () {
@@ -129,7 +130,7 @@ gulp.task('css-prod', function () {
 });
 
 gulp.task('watch', ['server'], function () {
-  gulp.watch(['src/app.ts'], ['js-dev']);
+  gulp.watch(['src/app.ts'], ['browserify']);
   gulp.watch(config.stylusPath, ['css-dev']);
 
   gulp.watch(['src/*/**', 'src/*']).on('change', function (file) {
@@ -138,7 +139,7 @@ gulp.task('watch', ['server'], function () {
   });
 });
 
-gulp.task('build-dev', ['js-dev', 'css-dev'], function () {
+gulp.task('build-dev', ['browserify', 'css-dev'], function () {
   // place code for your default task here
 });
 

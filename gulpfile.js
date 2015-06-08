@@ -46,23 +46,23 @@ gulp.task('js-dev', function () {
   //gulp.src('collapseCheckbox.js')
   //  .pipe(gulp.dest('test/js/'));
   var tsProject = ts.createProject('tsconfig.json');
-  return tsProject.src() // instead of gulp.src(...) 
-    .pipe(sourcemaps.init())    
+  return tsProject.src() // instead of gulp.src(...)
+    .pipe(sourcemaps.init())
     .pipe(ts(tsProject))
     .js
     .pipe(sourcemaps.write('./')) // write external source map
     .pipe(gulp.dest(function(file) {
       return file.base;
-  })); 
+  }));
 });
 
-gulp.task('browserify', ['js-dev'], function() {  
+gulp.task('browserify', ['js-dev'], function() {
   return browserify('./src/app.js')
   .bundle()
   .pipe(source(config.siteDir + '/bundle.js'))
   .pipe(gulp.dest(function(file) {
     return file.base;
-  })); 
+  }));
 });
 
 gulp.task('css-dev', function () {
@@ -130,7 +130,7 @@ gulp.task('css-prod', function () {
 });
 
 gulp.task('watch', ['server'], function () {
-  gulp.watch(['src/app.ts'], ['browserify']);
+  gulp.watch(['src/**/*.ts'], ['browserify']);
   gulp.watch(config.stylusPath, ['css-dev']);
 
   gulp.watch(['src/*/**', 'src/*']).on('change', function (file) {

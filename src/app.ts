@@ -24,6 +24,7 @@ class App extends TypedReact.Component<any, any> {
 
 var app = TypedReact.createClass(App);
 
+// instantiates the root component, starts the framework, and injects the markup into a raw DOM element, provided as the second argument
 React.render(
     React.createElement(app, null),
     document.getElementById('react-container')

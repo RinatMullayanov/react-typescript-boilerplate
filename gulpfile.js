@@ -62,7 +62,7 @@ gulp.task('js-dev', function () {
 gulp.task('react', function () {
     return gulp.src([
       './src/components_flow/hello/hello.jsx',
-      './src/components_flow/input/input.jsx', 
+      './src/components_flow/input/input.jsx',
       './src/app.jsx'],
       function (er, files) {
           // files is an array of filenames.
@@ -76,12 +76,10 @@ gulp.task('react', function () {
             weak: false,
             killFlow: false,
             beep: false,
-            abort: true //abort the gulp task after the first Typecheck error
+            abort: false //abort the gulp task after the first Typecheck error
         }))
-        .pipe(react({stripTypes: true}))
-        //.pipe(gulp.dest('dist'));
+        .pipe(react({stripTypes: true, harmony: true}))
         .pipe(gulp.dest(function(file) {
-          //console.log(file.base);
           return file.base;
     }));
 });

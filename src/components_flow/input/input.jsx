@@ -13,8 +13,12 @@ var Input = React.createClass({
   },
 
   render: function(): any {
-    var value = this.state.value;
-    return <input type="text" value={value} onChange={this.handleChange} />;
+    return (
+      <div>
+        <input type="text" value={this.state.value} onChange={this.handleChange} />
+        <p>{this.state.value}</p>
+      </div>
+    );
   }
 });
 

@@ -9,6 +9,9 @@ var uglify = require('gulp-uglify');
 // typescript
 var ts = require('gulp-typescript');
 var sourcemaps = require('gulp-sourcemaps');
+// flow and jsx
+var react = require('gulp-react');
+var flow = require('gulp-flowtype');
 // browserify
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
@@ -54,6 +57,29 @@ gulp.task('js-dev', function () {
     .pipe(gulp.dest(function(file) {
       return file.base;
   }));
+});
+
+gulp.task('react', function () {
+    return gulp.src('./src/flow/helloFlow.jsx', function (er, files) {
+          // files is an array of filenames.
+          // If the `nonull` option is set, and nothing
+          // was found, then files is ["**/*.js"]
+          // er is an error object or null.
+          //console.log(files);
+        })
+        .pipe(flow({
+            all: false,
+            weak: false,
+            killFlow: false,
+            beep: false,
+            abort: false
+        }))
+        .pipe(react({stripTypes: true}))
+        //.pipe(gulp.dest('dist'));
+        .pipe(gulp.dest(function(file) {
+          //console.log(file.base);
+          return file.base;
+    }));
 });
 
 gulp.task('browserify', ['js-dev'], function() {

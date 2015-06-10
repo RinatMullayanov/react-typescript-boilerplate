@@ -72,7 +72,7 @@ gulp.task('react', function () {
             weak: false,
             killFlow: false,
             beep: false,
-            abort: false
+            abort: true //abort the gulp task after the first Typecheck error
         }))
         .pipe(react({stripTypes: true}))
         //.pipe(gulp.dest('dist'));

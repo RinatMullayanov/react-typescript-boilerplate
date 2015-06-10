@@ -60,7 +60,11 @@ gulp.task('js-dev', function () {
 });
 
 gulp.task('react', function () {
-    return gulp.src('./src/flow/helloFlow.jsx', function (er, files) {
+    return gulp.src([
+      './src/components_flow/hello/hello.jsx',
+      './src/components_flow/input/input.jsx', 
+      './src/app.jsx'],
+      function (er, files) {
           // files is an array of filenames.
           // If the `nonull` option is set, and nothing
           // was found, then files is ["**/*.js"]
@@ -80,6 +84,15 @@ gulp.task('react', function () {
           //console.log(file.base);
           return file.base;
     }));
+});
+
+gulp.task('react-browserify', ['react'], function () {
+  return browserify('./src/app.js')
+  .bundle()
+  .pipe(source(config.siteDir + '/bundle.js'))
+  .pipe(gulp.dest(function(file) {
+    return file.base;
+  }));
 });
 
 gulp.task('browserify', ['js-dev'], function() {

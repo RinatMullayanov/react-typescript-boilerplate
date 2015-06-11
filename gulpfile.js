@@ -76,7 +76,7 @@ gulp.task('react', function () {
             weak: false,
             killFlow: false,
             beep: false,
-            abort: false //abort the gulp task after the first Typecheck error
+            abort: true //abort the gulp task after the first Typecheck error
         }))
         .pipe(react({stripTypes: true, es6module: true, harmony: true}))
         .pipe(gulp.dest(function(file) {
